@@ -5,10 +5,7 @@
 **Índice**
 
 * [1. Generando un ambiente de pruebas](#1.Generando un ambiente de pruebas)
-** [1.a Software a instalar](#1a.Software a instalar)
-
-* [1. Manejo de Modals](#manejoDeModals)
-	* [a. Manejo de Notificaciones](#manejoDeNotificaciones)
+	* [a. Software a instalar](#1a.Software a instalar)
 
 ---------------------------------------
 
@@ -26,7 +23,7 @@ Para instalar un ambiente de pruebas en un servidor desde cero, es recomendable 
 
 <a name="1a.Software a instalar" />
 
-### 1a. Software a instalar
+### 1 a. Software a instalar
 
 **Browsers/Navegadores**
 
@@ -62,3 +59,32 @@ Agregados:
 	- https://git-scm.com/download/win
 - Tortoise GIT
 	- https://tortoisegit.org/download/
+
+**Desarrollo**
+
+Sólo si se quiere agregar desarrollo desde el ambiente de testeo.
+
+- VS Code:
+	- https://code.visualstudio.com/download
+
+### 1 b. Configuración de software
+
+1. Instalar XAMPP. Descargarlo desde la siguiente URL, cualquiera de los clientes es útil debido a que sólo es necesaria la configuración de un servidor Apache, tarea básica de XAMPP
+
+    https://www.apachefriends.org/download.html
+
+2. Una vez instalado, abrir la configuración de apache **httpd.config** y buscar la linea que dice **Listen 80**, suele estar por la parte de arriba. Cambiarla a otro puerto disponible, por ejemplo **Listen 8085**.
+
+3. Una vez cambiado el puerto, creamos una nueva carpeta en el directorio **C:\xampp\htdocs** llamada **TEST_Client**.
+
+4. Copiar los archivos de este repositorio dentro de la carpeta.
+
+5. Poner en funcionamiento el servidor apache desde el panel de control de XAMPP.
+
+6. Abrir http://localhost:<<puerto>>/TEST_Client/
+
+    en el caso del ejemplo, sería http://localhost:8085/TEST_Client/
+
+7. Si aparece el sitio, ya se encuentra en funcionamiento.
+
+    Los archivos y carpetas se generan en la carpeta **C:\xampp\htdocs\UKAng_Client\files**.
