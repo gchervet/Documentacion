@@ -6,6 +6,7 @@
 
 * [1. Generando un ambiente de pruebas](#1.GenerandoUnAmbienteDePruebas)
 	* [a. Software a instalar](#1a.SoftwareAInstalar)
+	* [b. Configuración de software](#1b.ConfiguracionSoftware)
 * [2. Apuntes sobre SQL y Base de datos](#2.ApuntesSobreSQLyBDD)
 	* [a. Invocar un Web service desde una SQL Stored procedure](#2a.InvocarWebServiceDesdeSQLSP)
 
@@ -14,7 +15,7 @@
 
 <a name="1.GenerandoUnAmbienteDePruebas" />
 
-## 1. Generando un ambiente de pruebas
+# 1. Generando un ambiente de pruebas
 
 Para instalar un ambiente de pruebas en un servidor desde cero, es recomendable tener los siguientes puntos en cuenta:
 
@@ -26,7 +27,7 @@ Para instalar un ambiente de pruebas en un servidor desde cero, es recomendable 
 
 <a name="1a.SoftwareAInstalar" />
 
-### 1 a. Software a instalar
+## 1 a. Software a instalar
 
 **Browsers/Navegadores**
 
@@ -63,7 +64,9 @@ Agregados:
 - Tortoise GIT
 	- https://tortoisegit.org/download/
 
-### 1 b. Configuración de software
+<a name="1b.ConfiguracionSoftware" />
+	
+## 1 b. Configuración de software
 
 #### IIS
 
