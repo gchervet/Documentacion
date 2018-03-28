@@ -4,12 +4,15 @@
 
 **Índice**
 
-* [1. Generando un ambiente de pruebas](#1.Generando un ambiente de pruebas)
-	* [a. Software a instalar](#1a.Software a instalar)
+* [1. Generando un ambiente de pruebas](#1.GenerandoUnAmbienteDePruebas)
+	* [a. Software a instalar](#1a.SoftwareAInstalar)
+* [2. Apuntes sobre SQL y Base de datos](#2.ApuntesSobreSQLyBDD)
+	* [a. Invocar un Web service desde una SQL Stored procedure](#2a.InvocarWebServiceDesdeSQLSP)
+
 
 ---------------------------------------
 
-<a name="1.Generando un ambiente de pruebas" />
+<a name="1.GenerandoUnAmbienteDePruebas" />
 
 ## 1. Generando un ambiente de pruebas
 
@@ -21,7 +24,7 @@ Para instalar un ambiente de pruebas en un servidor desde cero, es recomendable 
 - Para el desarrollo web es recomendable utilizar una versión del IIS 7+
 - El servidor debe tener al menos 30 gb de espacio
 
-<a name="1a.Software a instalar" />
+<a name="1a.SoftwareAInstalar" />
 
 ### 1 a. Software a instalar
 
@@ -109,3 +112,95 @@ Una vez instalado, **Node** ofrece, entre otras cosas, la posibilidad de configu
 7. Si no hubo error, **Node ya tendrá publicado el sitio correspondiente**, en el puerto en el que fue configurado desde el código.
 8. Si hubo error, volver a correr el comando **npm install**
 9. Para ingresar al sitio o servicio, en el ejemplo dado sería mediante **la siguiente** **url: http://localhost:<<puerto>>/Test/...**
+
+Nota: 
+
+	En algunos casos, en vez de correr npm start, es necesario correr node app. Estos casos se dan cuando la configuración del servidor se encuentra en el archivo app.js
+	Si el archivo de configuración tiene otro nombre (no app.js), correr el comando node <<nombre.js>>.
+	
+	Los elementos que aparezcan en consola se mostrarán en el cmd donde se publicó el servicio.
+
+<a name="2.ApuntesSobreSQLyBDD" />
+
+# 2. Apuntes sobre SQL y Base de datos
+
+<a name="2a.InvocarWebServiceDesdeSQLSP" />
+
+## a. Invocar un Web Service desde una SQL Stored Procedure
+
+Es necesario activar ciertas funciones en la BDD mediante este código
+
+```sql
+sp_configure 'show advanced options', 1 
+
+GO 
+RECONFIGURE WITH OVERRIDE; 
+GO 
+sp_configure 'Ole Automation Procedures', 1 
+GO 
+RECONFIGURE WITH OVERRIDE; 
+GO 
+sp_configure 'show advanced options', 1 
+GO 
+RECONFIGURE WITH OVERRIDE;
+```
+
+Luego realizamos la SP:
+
+```sql
+CREATE PROCEDURE [dbo].[sp_CallWebServices]
+@param varchar(100) = NULL
+
+AS
+
+	DECLARE @obj INT
+	DECLARE @return INT
+	DECLARE @sUrl VARCHAR(200)
+	DECLARE @response VARCHAR(8000)
+	DECLARE @hr INT
+	DECLARE @src VARCHAR(255)
+	DECLARE @desc VARCHAR(255)
+
+	SET @sUrl = 'http://10.9.0.112:9000/api/test' -- WEB SERVICE URL
+
+	EXEC sp_OACreate 'MSXML2.ServerXMLHttp', @obj OUT
+	EXEC sp_OAMethod @obj, 'Open', NULL, 'GET', @sUrl, false
+	EXEC sp_OAMethod @obj, 'send'
+	EXEC sp_OAGetProperty @obj, 'responseText', @response OUT
+
+	SELECT @response [response]
+	EXEC sp_OADestroy
+
+RETURN
+```
+De esta forma se puede ejecutar la SP de la siguiente manera:
+
+```sql
+EXEC sp_CallWebServices 'parametro'
+```
+
+Nota importante:
+
+	SQL no entiende quién es localhost. 
+	Si se quiere llamar a un servicio local, suplantar localhost con la IP del equipo 
+	(aunque sea el mismo propio). 
+
+Otra forma de SP:
+
+```sql
+Declare @Object as Int;
+Declare @ResponseText as Varchar(8000);
+ 
+--Code Snippet
+Exec sp_OACreate 'MSXML2.XMLHTTP', @Object OUT;
+Exec sp_OAMethod @Object, 'open', NULL, 'get',
+'http://10.9.0.112:9000/api/test', -- WEB SERVICE URL
+'false'
+Exec sp_OAMethod @Object, 'send'
+Exec sp_OAMethod @Object, 'responseText', @ResponseText OUTPUT
+ 
+Select @ResponseText
+ 
+Exec sp_OADestroy @Object
+
+```
