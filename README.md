@@ -4,12 +4,12 @@
 
 **Índice**
 
-* [1. Generando un ambiente de pruebas](#1.Generando un ambiente de pruebas)
-	* [a. Software a instalar](#1a.Software a instalar)
+* [1. Generando un ambiente de pruebas](#1.GenerandoUnAmbienteDePuebas)
+	* [a. Software a instalar](#1a.SoftwareAInstalar)
 
 ---------------------------------------
 
-<a name="1.Generando un ambiente de pruebas" />
+<a name="1.GenerandoUnAmbienteDePuebas" />
 
 ## 1. Generando un ambiente de pruebas
 
@@ -21,7 +21,7 @@ Para instalar un ambiente de pruebas en un servidor desde cero, es recomendable 
 - Para el desarrollo web es recomendable utilizar una versión del IIS 7+
 - El servidor debe tener al menos 30 gb de espacio
 
-<a name="1a.Software a instalar" />
+<a name="1a.SoftwareAInstalar" />
 
 ### 1 a. Software a instalar
 
