@@ -4,12 +4,12 @@
 
 **Índice**
 
-* [1. Generando un ambiente de pruebas](#1.GenerandoUnAmbienteDePuebas)
-	* [a. Software a instalar](#1a.SoftwareAInstalar)
+* [1. Generando un ambiente de pruebas](#1.Generando un ambiente de pruebas)
+	* [a. Software a instalar](#1a.Software a instalar)
 
 ---------------------------------------
 
-<a name="1.GenerandoUnAmbienteDePuebas" />
+<a name="1.Generando un ambiente de pruebas" />
 
 ## 1. Generando un ambiente de pruebas
 
@@ -21,7 +21,7 @@ Para instalar un ambiente de pruebas en un servidor desde cero, es recomendable 
 - Para el desarrollo web es recomendable utilizar una versión del IIS 7+
 - El servidor debe tener al menos 30 gb de espacio
 
-<a name="1a.SoftwareAInstalar" />
+<a name="1a.Software a instalar" />
 
 ### 1 a. Software a instalar
 
@@ -60,14 +60,17 @@ Agregados:
 - Tortoise GIT
 	- https://tortoisegit.org/download/
 
-**Desarrollo**
-
-Sólo si se quiere agregar desarrollo desde el ambiente de testeo.
-
-- VS Code:
-	- https://code.visualstudio.com/download
-
 ### 1 b. Configuración de software
+
+#### IIS
+
+1. El IIS se encuentra ya instalado en el equipo, pero hay que indicarle al sistema que el usuario conectado pueda visualizarlo.
+2. Ingresar a **Panel de control**
+3. Ingresar a **Activar o desactivar características de Windows**
+4. Marcar todos los items dentro del apartado  **Internet Information Services**, salvo por **Servidor FTP**
+5. Aceptar
+
+#### XAMPP
 
 1. Instalar XAMPP. Descargarlo desde la siguiente URL, cualquiera de los clientes es útil debido a que sólo es necesaria la configuración de un servidor Apache, tarea básica de XAMPP
 
@@ -88,3 +91,4 @@ Sólo si se quiere agregar desarrollo desde el ambiente de testeo.
 7. Si aparece el sitio, ya se encuentra en funcionamiento.
 
     Los archivos y carpetas se generan en la carpeta **C:\xampp\htdocs\UKAng_Client\files**.
+
