@@ -7,6 +7,9 @@
 * [1. Generando un ambiente de pruebas](#1.Generando un ambiente de pruebas)
 ** [1.a Software a instalar](#1a.Software a instalar)
 
+* [1. Manejo de Modals](#manejoDeModals)
+* [2. Manejo de Notificaciones](#manejoDeNotificaciones)
+
 ---------------------------------------
 
 <a name="1.Generando un ambiente de pruebas" />
