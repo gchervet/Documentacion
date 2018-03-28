@@ -98,6 +98,10 @@ Agregados:
 
     Los archivos y carpetas se generan en la carpeta **C:\xampp\htdocs\UKAng_Client\files**.
 
+Nota
+
+	Para que se publiquen los sitios de XAMPP hay que abrir el XAMPP Control panel y hacer click en **start** sobre el servidor apache.
+
 #### Node JS
 
 El **Node Js**, al igual que el **IIS**, **es un servidor local para publicar sitios** y servicios web, por lo que ambos pueden ser utilizados sin necesidad del otro.
