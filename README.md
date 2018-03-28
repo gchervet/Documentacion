@@ -32,34 +32,34 @@ Para instalar un ambiente de pruebas en un servidor desde cero, es recomendable 
 **Browsers/Navegadores**
 
 - Chrome
-https://www.google.com/chrome/
+	- https://www.google.com/chrome/
 - Firefox
-https://www.mozilla.org/es-AR/firefox/new/
+	-https://www.mozilla.org/es-AR/firefox/new/
 - Edge
-https://www.microsoft.com/es-ar/windows/microsoft-edge
+	-https://www.microsoft.com/es-ar/windows/microsoft-edge
 - Opera (no siempre es necesario)
-https://www.opera.com/es/download
+	-https://www.opera.com/es/download
 
 Agregados:
 - AdBlock
-https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom?hl=es-419
+	-https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom?hl=es-419
 
 **Servicios web**
 
 - IIS v7+
-https://www.microsoft.com/es-ar/download/details.aspx?id=2299
+	-https://www.microsoft.com/es-ar/download/details.aspx?id=2299
 - XAMPP
-https://www.apachefriends.org/es/download.html
+	-https://www.apachefriends.org/es/download.html
 - Node js
-https://nodejs.org/en/download/
+	-https://nodejs.org/en/download/
 
 Agregados:
 - Web platform installer
-https://www.microsoft.com/web/downloads/platform.aspx
+	-https://www.microsoft.com/web/downloads/platform.aspx
 
 **Git/Repositorios**
 
 - GIT Bash
-https://git-scm.com/download/win
+	-https://git-scm.com/download/win
 - Tortoise GIT
-https://tortoisegit.org/download/
+	-https://tortoisegit.org/download/
