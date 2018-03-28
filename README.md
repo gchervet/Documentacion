@@ -4,12 +4,8 @@
 
 **Índice**
 
-[TOCM]
-
-[TOC]
-
-###1. [Generando un ambiente de pruebas](#1.Generando un ambiente de pruebas)
-####a. [Software a instalar](#1a.Software a instalar)
+* [1. Generando un ambiente de pruebas](#1.Generando un ambiente de pruebas)
+** [1.a Software a instalar](#1a.Software a instalar)
 
 ---------------------------------------
 
