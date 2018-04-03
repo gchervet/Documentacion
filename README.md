@@ -11,6 +11,7 @@
 	* [a. Invocar un Web service desde una SQL Stored procedure](#2a.InvocarWebServiceDesdeSQLSP)
 * [3. Apuntes sobre Desarrollo - Seguridad](#3.ApuntesSobreDesarrollo_Seguridad)
 	* [a. Json Web Token](#3a.JWT)
+	* [b. Promesas en Javascript](#3b.PromesasJavascript)
 * [4. Resolución de problemas - Web Config](#4.ApuntesSobreDesarrollo)
 	* [a. Los métodos devuelven 404 en el servidor pero funcionan localmente](#4a.Metodos404Servidor)
 * [5. Apuntes varios](#5.ApuntesVarios)
@@ -252,6 +253,80 @@ Donde
 	user es el JSON que solicita JWT para la creación de un token por usuario, como mínimo se esperan "username":"username" y "password":"password"
 	process.env.SECRET_KEY es la string secreta encargada de encriptar el token
 	expiresIn es el valor en segundos de expiración.
+
+<a name="3b.PromesasJavascript" />
+
+## b. Promesas en Javascript
+
+Las promesas son llamadas asincrónicas a un servicio web que, al dar una respuesta, activan un evento de finalización para realizar un proceso a partir del mismo.
+
+Este evento se llama **.then()**, y es muy útil a la hora de esperar a una respuesta del servicio.
+
+Una buena forma de utilizar las promesas es al momento de generar un servicio javascript.
+
+Imaginemos que tenemos un servicio llamado utilityService.js el cual tiene la siguiente estructura:
+
+```js
+angular.module("app")
+    .factory('utilityService', ['$http', '$rootScope',
+function utilityService($http, $rootScope, $uibModal) {
+
+	var service = {
+        metodo1: metodo1,
+        metodo2: metodo2,
+        metodo3: metodo3
+    };
+
+    return service;
+
+}]);
+```
+
+En este caso, tenemos un servicio básico que devuelve tres métodos llamados 1, 2, y 3.
+
+Lo que vamos a hacer es transformar alguno de estos métodos en una promesa, para que cualquier componente angular/controlador que implemente a utilityService pueda utilizarlo mediante el comando **then**.
+
+Por ejemplo, el método 1 puede ser el siguiente:
+
+```js
+
+	...
+
+    return service;
+
+	function metodo1(){
+
+        return new Promise(function(resolve, reject){
+            
+			resolve("has alcanzado al método 1");
+            
+        })  
+    }
+	
+}]);
+```
+
+De esta forma, podemos llamar al método 1 desde un controlador de la siguiente forma:
+
+```js
+angular.module("app").controller('exampleController',
+function ($scope, $rootScope, utilityService) {
+
+	utilityService.metodo1().then(function(response){
+	
+		console.log(response);
+	
+	});
+
+}]);
+```
+
+En este caso, primero referenciamos a utilityService en la declaración del controlador, y luego utilizamos uno de sus métodos, en este caso el **metodo1**.
+
+Al pedir la devolución de metodo1 indicándole el **then**, cuando el método 1 corra la línea **resolve(...)**, devolverá una respuesta que será capturada por el then.
+
+Una vez obtenida la respuesta, se loguea en consola cuál fue la misma.
+
 
 <a name="4.ApuntesSobreDesarrollo" />
 
