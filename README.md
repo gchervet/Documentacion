@@ -227,8 +227,31 @@ Exec sp_OADestroy @Object
 
 ## a. Json Web Token
 
+Librería tomada del siguiente link: https://github.com/auth0/node-jsonwebtoken
 
+Para instalar el package mediante Node:
 
+	npm install jsonwebtoken
+
+Para utilizar el package desde un service js:
+
+```js
+var JWT = require('jsonwebtoken');
+```
+
+Para generar un nuevo token:
+
+```js
+var token = JWT.sign(user, process.env.SECRET_KEY, {
+	expiresIn: 9999
+});
+```
+
+Donde
+
+	user es el JSON que solicita JWT para la creación de un token por usuario, como mínimo se esperan "username":"username" y "password":"password"
+	process.env.SECRET_KEY es la string secreta encargada de encriptar el token
+	expiresIn es el valor en segundos de expiración.
 
 <a name="4.ApuntesSobreDesarrollo" />
 
