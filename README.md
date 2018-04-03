@@ -9,6 +9,12 @@
 	* [b. Configuración de software](#1b.ConfiguracionSoftware)
 * [2. Apuntes sobre SQL y Base de datos](#2.ApuntesSobreSQLyBDD)
 	* [a. Invocar un Web service desde una SQL Stored procedure](#2a.InvocarWebServiceDesdeSQLSP)
+* [3. Apuntes sobre Desarrollo - Seguridad](#3.ApuntesSobreDesarrollo_Seguridad)
+	* [a. Json Web Token](#3a.JWT)
+* [4. Resolución de problemas - Web Config](#4.ApuntesSobreDesarrollo)
+	* [a. Los métodos devuelven 404 en el servidor pero funcionan localmente](#4a.Metodos404Servidor)
+* [5. Apuntes varios](#5.ApuntesVarios)
+	* [a. Buscar procesos INET Service](#5a.BuscarProcesosINETService)
 
 
 ---------------------------------------
@@ -211,3 +217,95 @@ Select @ResponseText
 Exec sp_OADestroy @Object
 
 ```
+
+
+<a name="3.ApuntesSobreDesarrollo_Seguridad" />
+
+# 3. Apuntes sobre Desarrollo - Seguridad
+
+<a name="3a.JWT" />
+
+## a. Json Web Token
+
+
+
+
+<a name="4.ApuntesSobreDesarrollo" />
+
+# 4. Resolución de problemas - Web Config
+
+<a name="4a.Metodos404Servidor" />
+
+## a. Los métodos devuelven 404 en el servidor pero funcionan localmente
+
+Tener en cuenta que en el servidor debería estar **instalada la versión de ASP.NET framework 4 y superior**.
+
+- Agregar estas líneas al web.config de la app. Dentro de **<system.webserver>**
+
+```xml
+<modules runAllManagedModulesForAllRequests="true" >
+  <remove name="FormsAuthentication"/>
+</modules>
+```
+
+- Chequear en cada aplicación que el Framework sea el correcto. Si la aplicación sigue tirando errores de framework, cambiar los siguientes valores:
+
+```xml
+<system.web>
+	<authentication mode="None"/>
+	<compilation targetFramework="4.5" />
+	<httpRuntime targetFramework="4.5" maxRequestLength="2147483647" executionTimeout="3000" />	
+	<customErrors mode="Off"/>
+</system.web>
+```
+
+- Por los siguientes:
+
+```xml
+  <system.web>
+    <authentication mode="None"/>
+    <compilation targetFramework="4.0" />
+    <httpRuntime targetFramework="4.0" maxRequestLength="2147483647" executionTimeout="3000" />	
+    <customErrors mode="Off"/>
+  </system.web>
+```
+
+Notar el cambio en los decimales del valor de **targetFramework**.
+
+<a name="4b.ConnectionStringSeguridadNoSuplida" />
+
+## b. La seguridad integrada en el connection string no puede ser suplida, y no deja ingresar a la base.
+
+**Esta resolución NO es definitiva, sólo sirve para realizar un workaround temporal.**
+
+Sólo en casos de necesidad, se puede superar la seguridad integrada del connection string cambiando lo siguiente:
+
+```xml
+<connectionStrings>
+	<add name="Uni_Entities" connectionString="metadata=res://*/Uni_Model.csdl|res://*/Uni_Model.ssdl|res://*/Uni_Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=SVRSQL01;initial catalog=prod_Uni;integrated security=True;Connect Timeout=300;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+</connectionStrings>
+```
+
+Por esto:
+
+```xml
+<add name="Uni_Entities" connectionString="metadata=res://*/Uni_Model.csdl|res://*/Uni_Model.ssdl|res://*/Uni_Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=SVRSQL01;initial catalog=prod_Uni; persist security info=True;user id=UKSync;password=kennedy2017;Connect Timeout=300;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+```
+
+Notar el cambio en **persist security info=True**
+
+**La solución definitive sería verificar con la primera versión del web.config si las credenciales del app pool son las correctas.**
+
+<a name="5.ApuntesVarios" />
+
+# 5. Apuntes varios
+
+<a name="5a.BuscarProcesosINETService" />
+
+## a. Buscar procesos INET Service
+
+Esto se utiliza para ver los procesos que se generan al levantar un servicio web local, además de los puertos que utilizan.
+
+Correr esta línea en un MS DOS:
+
+	%windir%\system32\inetsrv\appcmd.exe list wp
