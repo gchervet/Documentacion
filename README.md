@@ -17,8 +17,10 @@
 	* [d. Manejo de Modals](#3e.ManejoModals)
 * [4. Resolución de problemas - Web Config](#4.ResolucionProblemas_WebConfig)
 	* [a. Los métodos devuelven 404 en el servidor pero funcionan localmente](#4a.Metodos404Servidor)
-* [5. Apuntes varios](#5.ApuntesVarios)
-	* [a. Buscar procesos INET Service](#5a.BuscarProcesosINETService)
+* [5. Resolución de problemas - Node JS](#5.ResolucionProblemas_NodeJS)
+	* [a. Can't set headers after they are sent](#5a.CantSetHeaders)
+* [6. Apuntes varios](#6.ApuntesVarios)
+	* [a. Buscar procesos INET Service](#6a.BuscarProcesosINETService)
 
 
 ---------------------------------------
@@ -632,11 +634,31 @@ Notar el cambio en **persist security info=True**
 
 **La solución definitive sería verificar con la primera versión del web.config si las credenciales del app pool son las correctas.**
 
-<a name="5.ApuntesVarios" />
+<a name="5.ResolucionProblemas_NodeJS" />
 
-# 5. Apuntes varios
+# 6. Resolución de problemas - Node JS
 
-<a name="5a.BuscarProcesosINETService" />
+<a name="5a.CantSetHeaders" />
+
+## a. Can't set headers after they are sent
+
+Este error se suele dar por diversas razones, pero aquí se enumeran algunas:
+
+- En alguna promesa hay más de un res.json(...)
+- Se suele dar por la dupla express - mssql, pero tiene más que ver con las promesas no bien resueltas
+
+**Cómo solucionar:**
+
+Recordar que **res.json(...)** no es lo mismo que **return ...**, por lo que el código continuará e intentará dar dos devoluciones en la respuesta, duplicando los headers. 
+
+La mejor opción es directamente eliminar los res.json duplicados.
+
+
+<a name="6.ApuntesVarios" />
+
+# 6. Apuntes varios
+
+<a name="6a.BuscarProcesosINETService" />
 
 ## a. Buscar procesos INET Service
 
