@@ -1,6 +1,6 @@
 # Documentación
 
-![](https://filer.365.clarin.com/filer/materiales-salesforce/prod/201701/06/201701-06-165ca1fa-6859-4207-9b79-ca74eea05647.jpg)
+![](https://raw.githubusercontent.com/gchervet/Documentacion/master/images/kennedy_logo.JPEG)
 
 **Índice**
 
