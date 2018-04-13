@@ -17,6 +17,7 @@
 	* [d. Manejo de Modals](#3e.ManejoModals)
 * [4. Resolución de problemas - Web Config](#4.ResolucionProblemas_WebConfig)
 	* [a. Los métodos devuelven 404 en el servidor pero funcionan localmente](#4a.Metodos404Servidor)
+	* [b. La seguridad integrada en el connection string no puede ser suplida, y no deja ingresar a la base](#4b.ConnectionStringSeguridadNoSuplida)
 * [5. Resolución de problemas - Node JS](#5.ResolucionProblemas_NodeJS)
 	* [a. Can't set headers after they are sent](#5a.CantSetHeaders)
 * [6. Apuntes varios](#6.ApuntesVarios)
@@ -632,7 +633,9 @@ Por esto:
 
 Notar el cambio en **persist security info=True**
 
-**La solución definitive sería verificar con la primera versión del web.config si las credenciales del app pool son las correctas.**
+**La solución definitive sería verificar con la primera versión del web.config si las credenciales del app pool son las correctas:**
+
+![](https://raw.githubusercontent.com/gchervet/Documentacion/master/images/4b.ConnectionStringSeguridadNoSuplida_000.png)
 
 <a name="5.ResolucionProblemas_NodeJS" />
 
