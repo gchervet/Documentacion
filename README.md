@@ -18,6 +18,11 @@
 * [4. Resolución de problemas - Web Config](#4.ResolucionProblemas_WebConfig)
 	* [a. Los métodos devuelven 404 en el servidor pero funcionan localmente](#4a.Metodos404Servidor)
 	* [b. La seguridad integrada en el connection string no puede ser suplida, y no deja ingresar a la base](#4b.ConnectionStringSeguridadNoSuplida)
+	* [c. Desactivar autenticación obligatoria](#4c.DesactivarAutenticacion)
+	* [d. Desactivar caché en todas las llamadas](#4d.DesactivarCache)
+	* [e. Habilitar CORS para el ingreso desde cualquier URL](#4e.HabilitarCORS)
+	* [f. Error 401.0](#4f.Error401.0)
+	* [g. Error 404.8](#4g.Error404.8)
 * [5. Resolución de problemas - Node JS](#5.ResolucionProblemas_NodeJS)
 	* [a. Can't set headers after they are sent](#5a.CantSetHeaders)
 * [6. Apuntes varios](#6.ApuntesVarios)
@@ -637,13 +642,99 @@ Notar el cambio en **persist security info=True**
 
 ![](https://raw.githubusercontent.com/gchervet/Documentacion/master/images/ConnectionStringSeguridadNoSuplida_00.png)
 
+
+<a name="4c.DesactivarAutenticacion" />
+
+## c. Desactivar autenticación obligatoria
+
+```xml
+<system.web>
+	<authentication mode="None" />
+</system.web>
+```
+
+<a name="4d.DesactivarCache" />
+
+## d. Desactivar caché en todas las llamadas
+
+```xml
+<staticContent>
+<clientCache cacheControlMode="DisableCache" />
+</staticContent>
+```
+
+<a name="4e.HabilitarCORS" />
+
+## e. Habilitar CORS para el ingreso desde cualquier URL
+
+```xml
+<system.webServer>
+<httpProtocol>
+  <customHeaders>
+	<add name="Access-Control-Allow-Origin" value="*" />
+	<add name="Access-Control-Allow-Headers" value="Origin, X-Requested-With, Content-Type, Accept, Authorization" />
+	<add name="Access-Control-Allow-Methods" value="GET, POST, PUT, DELETE, OPTIONS" />
+  </customHeaders>
+</httpProtocol>
+<modules>
+  <remove name="FormsAuthentication" />
+</modules>
+<handlers>
+  <remove name="ExtensionlessUrlHandler-Integrated-4.0" />
+  <remove name="OPTIONSVerbHandler" />
+  <remove name="TRACEVerbHandler" />
+  <add name="ExtensionlessUrlHandler-Integrated-4.0" path="*." verb="*" type="System.Web.Handlers.TransferRequestHandler" preCondition="integratedMode,runtimeVersionv4.0" />
+</handlers>
+<security>
+  <requestFiltering>
+	<requestLimits maxAllowedContentLength="40960000" />
+  </requestFiltering>
+</security>
+<validation validateIntegratedModeConfiguration="false"/>
+</system.webServer>
+```
+
+<a name="4f.Error401.0" />
+
+## f. Error 401.0
+
+```xml
+<system.webServer>
+  <modules>
+      <remove name="FormsAuthentication" />
+    </modules>
+</system.webServer>
+```
+
+<a name="4g.Error404.8" />
+	
+## g. Error 404.8
+	
+```xml
+<system.webServer>
+    <validation validateIntegratedModeConfiguration="false"/>
+</system.webServer>
+```
+
 <a name="5.ResolucionProblemas_NodeJS" />
 
-# 6. Resolución de problemas - Node JS
+# 5. Resolución de problemas - Node JS
+
+```xml
+<connectionStrings>
+	<add name="Uni_Entities" connectionString="metadata=res://*/Uni_Model.csdl|res://*/Uni_Model.ssdl|res://*/Uni_Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=SVRSQL01;initial catalog=prod_Uni;integrated security=True;Connect Timeout=300;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+</connectionStrings>
+```
 
 <a name="5a.CantSetHeaders" />
 
 ## a. Can't set headers after they are sent
+
+```xml
+<connectionStrings>
+	<add name="Uni_Entities" connectionString="metadata=res://*/Uni_Model.csdl|res://*/Uni_Model.ssdl|res://*/Uni_Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=SVRSQL01;initial catalog=prod_Uni;integrated security=True;Connect Timeout=300;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+</connectionStrings>
+```
 
 Este error se suele dar por diversas razones, pero aquí se enumeran algunas:
 
