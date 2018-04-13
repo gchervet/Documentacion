@@ -1,6 +1,6 @@
 # Documentación
 
-![](https://raw.githubusercontent.com/gchervet/Documentacion/master/images/kennedy_logo.JPEG)
+![](https://raw.githubusercontent.com/gchervet/Documentacion/master/images/kennedy_logo.jpg)
 
 **Índice**
 
