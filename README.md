@@ -635,7 +635,7 @@ Notar el cambio en **persist security info=True**
 
 **La solución definitive sería verificar con la primera versión del web.config si las credenciales del app pool son las correctas:**
 
-![](https://raw.githubusercontent.com/gchervet/Documentacion/master/images/4b.ConnectionStringSeguridadNoSuplida_000.png)
+![](https://raw.githubusercontent.com/gchervet/Documentacion/master/images/ConnectionStringSeguridadNoSuplida_00.png)
 
 <a name="5.ResolucionProblemas_NodeJS" />
 
