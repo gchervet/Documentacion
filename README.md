@@ -13,8 +13,10 @@
 	* [a. Json Web Token](#3a.JWT)
 	* [b. Promesas en Javascript](#3b.PromesasJavascript)
 	* [c. Manejo de notificaciones](#3c.ManejoNotificaciones)
-	* [e. Autenticación LDAP/AD](#3d.AutenticacionAD)
-	* [d. Manejo de Modals](#3e.ManejoModals)
+	* [d. Autenticación LDAP/AD](#3d.AutenticacionAD)
+	* [e. Manejo de Modals](#3e.ManejoModals)
+	* [f. Convertir un JSON a clases .CS](#3f.ConvertirJSONaCS)
+	* [g. Generar una solución .exe y asignarla a una tarea de Windows](#3g.ExeAUnaTareaWindows)
 * [4. Resolución de problemas - Web Config](#4.ResolucionProblemas_WebConfig)
 	* [a. Los métodos devuelven 404 en el servidor pero funcionan localmente](#4a.Metodos404Servidor)
 	* [b. La seguridad integrada en el connection string no puede ser suplida, y no deja ingresar a la base](#4b.ConnectionStringSeguridadNoSuplida)
@@ -572,6 +574,79 @@ angular.module('app')
 	$scope.NuevoMetodo = function (){};
 	
 });
+```
+
+<a name="3f.ConvertirJSONaCS" />
+
+## f. Convertir JSON a clases CS
+
+Visual Studio tiene una opción de pegado especial para convertir estructuras JSON en clases .CS
+
+1. Por ejemplo, teniendo el siguiente JSON:
+
+
+```json
+{
+    "entries": {
+        "entry": [
+            {
+                "attempt": 1,
+                "enrollmentId": 25545,
+                "points_possible": 100,
+                "grade": 62,
+                "activity_name": "Examen final [EF]",
+                "graded_at": "2017-11-20T19:11:04.122-05:00",
+                "submitted_at": "2017-11-20T19:11:04.048-05:00"
+            },
+            {
+                "attempt": 1,
+                "enrollmentId": 29633,
+                "points_possible": 100,
+                "grade": 41.6666666666667,
+                "activity_name": "Trabajo práctico 1 [TP1]",
+                "graded_at": "2017-11-20T19:17:02.964-05:00",
+                "submitted_at": null
+            },
+            {
+                "attempt": 3,
+                "enrollmentId": 35345,
+                "points_possible": null,
+                "grade": 0,
+                "activity_name": "Encuesta [ENC]",
+                "graded_at": "2017-11-20T19:17:42.401-05:00",
+                "submitted_at": "2017-11-20T19:17:42.353-05:00"
+            }
+        ]
+    }
+}
+```
+
+2. Se copia el mismo, y en VS generamos un nuevo archivo .CS
+3. Ya dentro del mismo archivo, en VS seleccionamos *edit -> paste special -> json as classes*
+
+En este caso, nos generaria lo siguiente:
+
+```c#
+public class ClaseInicial_NombrarAGusto
+{
+	public Entries entries { get; set; }
+}
+
+public class Entries
+{
+	public Entry[] entry { get; set; }
+}
+
+public class Entry
+{
+	public int attempt { get; set; }
+	public int enrollmentId { get; set; }
+	public int? points_possible { get; set; }
+	public float grade { get; set; }
+	public string activity_name { get; set; }
+	public DateTime graded_at { get; set; }
+	public DateTime? submitted_at { get; set; }
+}
 ```
 
 <a name="4.ResolucionProblemas_WebConfig" />
