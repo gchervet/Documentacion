@@ -787,12 +787,6 @@ Notar el cambio en **persist security info=True**
 
 ## a. Can't set headers after they are sent
 
-```xml
-<connectionStrings>
-	<add name="Uni_Entities" connectionString="metadata=res://*/Uni_Model.csdl|res://*/Uni_Model.ssdl|res://*/Uni_Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=SVRSQL01;initial catalog=prod_Uni;integrated security=True;Connect Timeout=300;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
-</connectionStrings>
-```
-
 Este error se suele dar por diversas razones, pero aquí se enumeran algunas:
 
 - En alguna promesa hay más de un res.json(...)
