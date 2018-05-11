@@ -9,6 +9,7 @@
 	* [b. Configuración de software](#1b.ConfiguracionSoftware)
 * [2. Apuntes sobre SQL y Base de datos](#2.ApuntesSobreSQLyBDD)
 	* [a. Invocar un Web service desde una SQL Stored procedure](#2a.InvocarWebServiceDesdeSQLSP)
+	* [b. Generar un iterador con CURSOR](#2b.generarCURSOR)
 * [3. Apuntes sobre Desarrollo](#3.ApuntesSobreDesarrollo)
 	* [a. Json Web Token](#3a.JWT)
 	* [b. Promesas en Javascript](#3b.PromesasJavascript)
@@ -232,6 +233,72 @@ Exec sp_OADestroy @Object
 
 ```
 
+<a name="2b.generarCURSOR" />
+
+## b. Generar un iterador con CURSOR
+
+SQL puede generar una iteración mediante el instructivo **CUSOR**, aplicándolo a un SELECT, de la siguiente manera:
+
+```sql
+DECLARE @valorInt int
+
+DECLARE mi_cursor CURSOR  
+	FOR select DISTINCT EnrollmentId from Tabla  
+OPEN mi_cursor  
+
+FETCH NEXT FROM mi_cursor
+INTO @valorInt
+
+WHILE @@FETCH_STATUS = 0  
+BEGIN  
+
+	PRINT ' ' + @valorInt
+	FETCH NEXT FROM mi_cursor
+	INTO @valorInt
+
+END   
+CLOSE mi_cursor;  
+DEALLOCATE mi_cursor; 
+```
+
+Primero se debe declarar las variables que nos darán el select:
+
+```sql
+DECLARE @valorInt int
+```
+
+Luego declaramos el cursor y lo iniciamos con **OPEN**:
+
+```sql
+DECLARE mi_cursor CURSOR  
+	FOR select DISTINCT EnrollmentId from Tabla  
+OPEN mi_cursor  
+```
+
+Mediante **FETCH** obtenemos el primer valor del ciclo:
+```sql
+FETCH NEXT FROM mi_cursor
+INTO @valorInt
+```
+
+Con un **WHILE @@FETCH_STATUS=0** recorremos el ciclo en su enteridad, cuando termine el ciclo, se cierra el cursor:
+```sql
+WHILE @@FETCH_STATUS = 0  
+BEGIN  
+
+	-- INTERIOR DEL CICLO
+
+END   
+CLOSE mi_cursor;  
+DEALLOCATE mi_cursor; 
+```
+
+Y no olvidar obtener el siguiente valor mediante un **FETCH**:
+```sql
+PRINT ' ' + @valorInt
+FETCH NEXT FROM mi_cursor
+INTO @valorInt
+```
 
 <a name="3.ApuntesSobreDesarrollo" />
 
