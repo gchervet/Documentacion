@@ -243,7 +243,7 @@ SQL puede generar una iteración mediante el instructivo **CUSOR**, aplicándolo
 DECLARE @valorInt int
 
 DECLARE mi_cursor CURSOR  
-	FOR select DISTINCT EnrollmentId from Tabla  
+	FOR select DISTINCT valorInt from Tabla  
 OPEN mi_cursor  
 
 FETCH NEXT FROM mi_cursor
