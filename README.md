@@ -26,6 +26,7 @@
 	* [e. Habilitar CORS para el ingreso desde cualquier URL](#4e.HabilitarCORS)
 	* [f. Error 401.0](#4f.Error401.0)
 	* [g. Error 404.8](#4g.Error404.8)
+	* [h. Custom errors mode Off](#4h.CustomErrorsOff)
 * [5. Resolución de problemas - Node JS](#5.ResolucionProblemas_NodeJS)
 	* [a. Can't set headers after they are sent](#5a.CantSetHeaders)
 * [6. Apuntes varios](#6.ApuntesVarios)
@@ -840,15 +841,21 @@ Notar el cambio en **persist security info=True**
 </system.webServer>
 ```
 
+<a name="4h.CustomErrorsOff" />
+
+## h. Custom erros mode Off
+	
+```xml
+<configuration>
+    <system.web>
+        <customErrors mode="Off"/>
+    </system.web>
+</configuration>
+```
+
 <a name="5.ResolucionProblemas_NodeJS" />
 
 # 5. Resolución de problemas - Node JS
-
-```xml
-<connectionStrings>
-	<add name="Uni_Entities" connectionString="metadata=res://*/Uni_Model.csdl|res://*/Uni_Model.ssdl|res://*/Uni_Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=SVRSQL01;initial catalog=prod_Uni;integrated security=True;Connect Timeout=300;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
-</connectionStrings>
-```
 
 <a name="5a.CantSetHeaders" />
 
