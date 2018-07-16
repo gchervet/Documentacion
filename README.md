@@ -901,3 +901,31 @@ Basado en el siguiente video
 
 	https://www.youtube.com/watch?v=eE6oxEhqqoU
 
+1. Abrir el *Manager de Nuget* en VS Code.
+2. Descargar el módulo *PHPDebug*, este utiliza una aplicación llamada *XDebug* que hay que bajar luego y configurar.
+3. Antes de continuar, necesitamos saber qué versión tenemos de PHP. Para ello, vamos a la carpeta raíz de nuestra página en XAMPP, por ejemplo:
+
+	C:\xampp\htdocs\angular-filemanager
+	
+4. Allí, en la raíz, generamos un archivo llamado test.php con el siguiente contenido:
+
+```php
+<?php
+$var = "Hello";
+$output = $var. " world!";
+phpinfo();
+```
+
+5. En XAMPP corremos el servidor apache en el puerto especifico, en este ejemplo será el 80
+6. Una vez corriendo, abrimos el test.php generado de la siguiente manera:
+
+	http://localhost/angular-filemanager/test.php
+
+7. Si todo funciona correctamente, nos va a abrir una tabla html con los datos del PHP local. Hacemos click derecho en la pantalla y seleccionamos *Mostrar código fuente*.
+8. Copiamos el código fuente de la página y lo pegamos en el textbox de la siguiente url:
+
+	https://xdebug.org/wizard.php
+	
+9. Seleccionamos el botón que dice *Analyze phpinfo()* y nos dará una serie de instrucciones a seguir. Hacemos lo que nos dice.
+
+	
