@@ -31,8 +31,9 @@
 	* [a. Can't set headers after they are sent](#5a.CantSetHeaders)
 * [6. Apuntes varios](#6.ApuntesVarios)
 	* [a. Buscar procesos INET Service](#6a.BuscarProcesosINETService)
-
-
+* [7. Apuntes de PHP](#7ApuntesPHP)
+	* [a. Debuggear PHP con XAMPP](#7DEBUGPHPXAMPP)
+	
 ---------------------------------------
 
 <a name="1.GenerandoUnAmbienteDePruebas" />
@@ -886,3 +887,17 @@ Esto se utiliza para ver los procesos que se generan al levantar un servicio web
 Correr esta línea en un MS DOS:
 
 	%windir%\system32\inetsrv\appcmd.exe list wp
+
+
+<a name="7ApuntesPHP" />
+
+# 7. Apuntos de PHP
+
+<a name="7DEBUGPHPXAMPP" />
+
+## a. Debuggear PHP con XAMPP
+
+Basado en el siguiente video
+
+	https://www.youtube.com/watch?v=eE6oxEhqqoU
+
