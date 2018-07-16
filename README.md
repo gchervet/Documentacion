@@ -927,5 +927,16 @@ phpinfo();
 	https://xdebug.org/wizard.php
 	
 9. Seleccionamos el botón que dice *Analyze phpinfo()* y nos dará una serie de instrucciones a seguir. Hacemos lo que nos dice.
+10. Al seguir todas las instrucciones de la página, el archivo 
 
+	C:\xampp\php\php.ini
+	
+debería tener las siguientes líneas:
+
+	[XDebug]
+	xdebug.remote_enable = 1
+	xdebug.remote_autostart = 1
+	zend_extension = C:\xampp\php\ext\php_xdebug-2.6.0-7.2-vc15.dll (O la extensión que nos haya dicho la página)
+
+11. Una vez hecho esto, vamos al VS Code, File -> Preferences -> Settings
 	
