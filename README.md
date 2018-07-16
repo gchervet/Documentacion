@@ -938,5 +938,8 @@ debería tener las siguientes líneas:
 	xdebug.remote_autostart = 1
 	zend_extension = C:\xampp\php\ext\php_xdebug-2.6.0-7.2-vc15.dll (O la extensión que nos haya dicho la página)
 
-11. Una vez hecho esto, vamos al VS Code, File -> Preferences -> Settings
-	
+11. Una vez hecho esto, vamos al VS Code, File -> Preferences -> Settings y agregamos la siguiente línea al JSON:
+
+	"php.validate.executablePath": "C:\\xampp\\php\\php.exe"
+
+12. Ahora en el menú **Debug** del VS Code deberíamos poder accionar en cualquier momento nuestro debugger. Quizás nos pida permisos de administrador para correr el debugger. Es necesario resetear el servidor XAMPP.
