@@ -33,6 +33,7 @@
 	* [a. Buscar procesos INET Service](#6a.BuscarProcesosINETService)
 * [7. Apuntes de PHP](#7ApuntesPHP)
 	* [a. Debuggear PHP con XAMPP](#7DEBUGPHPXAMPP)
+	* [b. CORS con PHP](#7CORS)
 	
 ---------------------------------------
 
@@ -943,3 +944,53 @@ debería tener las siguientes líneas:
 	"php.validate.executablePath": "C:\\xampp\\php\\php.exe"
 
 12. Ahora en el menú **Debug** del VS Code deberíamos poder accionar en cualquier momento nuestro debugger. Quizás nos pida permisos de administrador para correr el debugger. Es necesario resetear el servidor XAMPP.
+
+<a name="7CORS" />
+
+## b. CORS con PHP
+
+Generar un archivo llamado **Cors.php** en la raíz del proyecto con el siguiente contenido:
+
+```php
+<?php
+namespace <<NAMESPACE_NAME>>;
+
+class Cors
+{
+    public function __construct($basePath = null, $lang = 'en', $muteErrors = true)
+    {
+       // Allow from any origin
+       if (isset($_SERVER['HTTP_ORIGIN'])) {
+            // Decide if the origin in $_SERVER['HTTP_ORIGIN'] is one
+            // you want to allow, and if so:
+            header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+            header('Access-Control-Allow-Credentials: true');
+            header('Access-Control-Max-Age: 86400');    // cache for 1 day
+        }
+
+        // Access-Control headers are received during OPTIONS requests
+        if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+
+            if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
+                // may also be using PUT, PATCH, HEAD etc
+                header("Access-Control-Allow-Methods: GET, POST, OPTIONS");         
+
+            if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
+                header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+
+            exit(0);
+        }
+    }
+}
+```
+
+Y finalmente, en **index.php** agregar la siguientes líneas:
+
+```php
+include 'Cors.php';
+
+// CORS
+$CORS = new Cors();
+```
+
+El constructor de la clase Cors agregará los permisos necesarios.
