@@ -727,6 +727,9 @@ doc.text(10, 75, splitTitle)
 //       x    y
 ```
 
+Esta librería hace uso de librerías externas de imagen, como la de png:
+
+	https://raw.githubusercontent.com/devongovett/png.js/master/png.js
 
 <a name="4.ResolucionProblemas_WebConfig" />
 
